@@ -1,0 +1,134 @@
+"""
+아이보스 마케팅 뉴스 클리핑 스크래퍼
+게시판: https://www.i-boss.co.kr/ab-7214
+오늘 날짜 뉴스클리핑 글을 자동으로 찾아서 파싱
+"""
+
+import requests
+import re
+from bs4 import BeautifulSoup
+from dataclasses import dataclass
+from typing import List
+from datetime import datetime
+
+
+@dataclass
+class NewsItem:
+    title: str
+    summary: str
+    url: str = ""
+
+
+BOARD_URL = "https://www.i-boss.co.kr/ab-7214"
+BASE_URL = "https://www.i-boss.co.kr"
+
+HEADERS = {
+    "User-Agent": (
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+        "AppleWebKit/537.36 (KHTML, like Gecko) "
+        "Chrome/120.0.0.0 Safari/537.36"
+    )
+}
+
+
+def fetch(url: str = BOARD_URL) -> List[NewsItem]:
+    """오늘 날짜 뉴스클리핑 글을 찾아서 파싱"""
+    today = datetime.now()
+    today_str = f"{today.month}월 {today.day}일"
+
+    # 게시판 목록에서 오늘 글 링크 찾기
+    r = requests.get(url, headers=HEADERS, timeout=15)
+    r.raise_for_status()
+    r.encoding = "utf-8"
+    soup = BeautifulSoup(r.text, "html.parser")
+
+    post_url = _find_todays_post(soup, today_str)
+
+    if not post_url:
+        print(f"  [아이보스] 오늘({today_str}) 뉴스클리핑 글을 찾지 못했습니다.")
+        return []
+
+    # 글 페이지 파싱
+    full_url = post_url if post_url.startswith("http") else f"{BASE_URL}/{post_url.lstrip('/')}"
+    r2 = requests.get(full_url, headers=HEADERS, timeout=15)
+    r2.raise_for_status()
+    r2.encoding = "utf-8"
+    return parse_post(r2.text)
+
+
+def _find_todays_post(soup, today_str: str) -> str:
+    """게시판 목록에서 오늘 날짜 뉴스클리핑 링크 반환"""
+    # 정확한 게시글 링크 패턴: ab-숫자-숫자 형태
+    post_pattern = re.compile(r"^ab-\d+-\d+$")
+    for a in soup.find_all("a", href=True):
+        text = a.get_text(strip=True)
+        href = a.get("href", "").strip("/")
+        # "[3월 10일 마케팅 뉴스클리핑]" + 게시글 URL 패턴
+        if today_str in text and "클리핑" in text and post_pattern.match(href):
+            return href
+    return ""
+
+
+def parse_post(html: str) -> List[NewsItem]:
+    """뉴스클리핑 글 본문에서 번호 매겨진 항목 파싱"""
+    soup = BeautifulSoup(html, "html.parser")
+    items: List[NewsItem] = []
+
+    # 본문 컨테이너 찾기 (아이보스 클래스: ABA-article-contents, content_view)
+    content = (
+        soup.select_one(".ABA-article-contents")
+        or soup.select_one(".content_view")
+        or soup.select_one(".bo_v_con")
+        or soup.select_one("#bo_v_con")
+        or soup.select_one(".view_content")
+    )
+
+    # 본문 텍스트 전체로 fallback
+    if not content:
+        content = soup.select_one("body")
+
+    if not content:
+        return []
+
+    text = content.get_text(separator="\n")
+    lines = [l.strip() for l in text.splitlines() if l.strip()]
+
+    current_title = ""
+    current_summary_lines: List[str] = []
+
+    for line in lines:
+        # "1. 제목" 패턴
+        m = re.match(r"^(\d{1,2})\.\s+(.+)$", line)
+        if m:
+            if current_title:
+                items.append(NewsItem(
+                    title=current_title,
+                    summary=" ".join(current_summary_lines),
+                ))
+            current_title = m.group(2)
+            current_summary_lines = []
+        elif current_title:
+            # 다음 번호 항목 또는 섹션 구분자 전까지 요약 수집
+            if re.match(r"^(\d{1,2})\.", line):
+                pass  # 이미 위에서 처리
+            elif (len(line) > 15
+                  and not line.startswith("[")
+                  and not line.startswith("출처")
+                  and not re.match(r"^(https?://|www\.)", line)):
+                current_summary_lines.append(line)
+
+    if current_title:
+        items.append(NewsItem(
+            title=current_title,
+            summary=" ".join(current_summary_lines),
+        ))
+
+    return items
+
+
+if __name__ == "__main__":
+    items = fetch()
+    print(f"수집된 뉴스 {len(items)}건")
+    for i, item in enumerate(items, 1):
+        print(f"\n{i}. {item.title}")
+        print(f"   {item.summary[:100]}")

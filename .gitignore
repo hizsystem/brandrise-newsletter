@@ -1,0 +1,22 @@
+# 민감 정보
+config.yaml
+.env
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# 출력 파일 (로컬 전용)
+output_*.txt
+preview*.txt
+run_out.txt
+send_out.txt
+send_*.txt
+stibee_*.txt
+check_sites.txt
+grants.txt
+*.log
+
+# docs/ 는 추적 (GitHub Pages)
+!docs/

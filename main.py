@@ -1,0 +1,239 @@
+"""
+데일리 뉴스레터 에이전트 메인
+실행: python main.py [--now] [--preview] [--test]
+  --now     : 즉시 실행
+  --preview : 파일 저장 없이 콘솔 미리보기만
+  --test    : 각 수집기 동작 확인
+"""
+
+import sys
+import io
+import yaml
+
+# Windows 콘솔 UTF-8 강제 설정 (이모지 출력)
+if sys.platform == "win32":
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace", line_buffering=True)
+    sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding="utf-8", errors="replace", line_buffering=True)
+
+import schedule
+import time
+import traceback
+from datetime import datetime
+from pathlib import Path
+
+from collectors import iboss, neusral, heypop
+from collectors import longblack as longblack_collector
+from collectors import stibee as stibee_collector
+from formatter import build_message_windows_date, generate_greeting, WEEKDAY_GREETINGS
+from html_formatter import save_newsletter
+from github_push import push_to_github
+
+
+CONFIG_PATH = Path(__file__).parent / "config.yaml"
+OUTPUT_DIR = Path(__file__).parent
+
+
+def load_config() -> dict:
+    with open(CONFIG_PATH, encoding="utf-8") as f:
+        return yaml.safe_load(f)
+
+
+def run_newsletter(config: dict, preview_only: bool = False):
+    print(f"\n[{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}] 뉴스레터 수집 시작...")
+
+    weekday = datetime.now().weekday()  # 0=월, 1=화, 3=목, 4=금
+    iboss_items = []
+    neusral_cats = []
+    heypop_items = []
+    longblack_item = None
+    stibee_items = []
+    email_newsletters = {}
+
+    # 아이보스 (매일)
+    try:
+        print("  → 아이보스 수집 중...")
+        iboss_items = iboss.fetch(config["sites"]["iboss"]["url"])
+        print(f"     {len(iboss_items)}개 항목 수집")
+    except Exception as e:
+        print(f"  [WARN] 아이보스 수집 실패: {e}")
+
+    # 뉴스럴 (매일)
+    try:
+        print("  → 뉴스럴 수집 중...")
+        neusral_cats = neusral.fetch(config["sites"]["neusral"]["url"])
+        print(f"     {len(neusral_cats)}개 카테고리 수집")
+    except Exception as e:
+        print(f"  [WARN] 뉴스럴 수집 실패: {e}")
+
+    # 롱블랙 (매일 - 웹 스크래핑)
+    try:
+        print("  → 롱블랙 수집 중...")
+        longblack_item = longblack_collector.fetch()
+        if longblack_item:
+            print(f"     {longblack_item.title[:40]}")
+    except Exception as e:
+        print(f"  [WARN] 롱블랙 수집 실패: {e}")
+
+    # 화요일 뉴스레터 (풋풋레터, 캐릿) - 수동 URL
+    if weekday == 1:
+        tuesday_cfg = config.get("tuesday_newsletters", {})
+        for key, cfg in tuesday_cfg.items():
+            url = cfg.get("url", "")
+            name = cfg.get("name", key)
+            if url and "stibee.com" in url:
+                try:
+                    print(f"  → {name} 수집 중...")
+                    item = stibee_collector.fetch(url, source_name=name)
+                    if item:
+                        stibee_items.append(item)
+                        print(f"     {item.title[:40]}")
+                except Exception as e:
+                    print(f"  [WARN] {name} 수집 실패: {e}")
+
+    # 금요일 뉴스레터 (까탈로그) - 수동 URL
+    if weekday == 4:
+        friday_cfg = config.get("friday_newsletters", {})
+        for key, cfg in friday_cfg.items():
+            url = cfg.get("url", "")
+            name = cfg.get("name", key)
+            if url and "stibee.com" in url:
+                try:
+                    print(f"  → {name} 수집 중...")
+                    item = stibee_collector.fetch(url, source_name=name)
+                    if item:
+                        stibee_items.append(item)
+                        print(f"     {item.title[:40]}")
+                except Exception as e:
+                    print(f"  [WARN] {name} 수집 실패: {e}")
+
+    # 헤이팝 (목요일)
+    if weekday == 3:
+        try:
+            print("  → 헤이팝 수집 중...")
+            heypop_items = heypop.fetch(config["sites"]["heypop"]["url"])
+            print(f"     {len(heypop_items)}개 항목 수집")
+        except Exception as e:
+            print(f"  [WARN] 헤이팝 수집 실패: {e}")
+
+    # === 인사말 생성 (1회 — txt/HTML 공유) ===
+    print("  → Claude API로 인사말 생성 중...")
+    weekday = datetime.now().weekday()
+    weekday_name, weekday_msg = WEEKDAY_GREETINGS.get(weekday, ("", ""))
+    api_key = config["anthropic"]["api_key"]
+    model = config["anthropic"].get("model", "claude-sonnet-4-6")
+
+    try:
+        greeting = generate_greeting(
+            api_key=api_key,
+            model=model,
+            iboss_items=iboss_items,
+            weekday_name=weekday_name,
+            weekday_msg=weekday_msg,
+            longblack_item=longblack_item,
+            stibee_items=stibee_items,
+            heypop_items=heypop_items,
+        )
+    except Exception as e:
+        print(f"  [WARN] 인사말 생성 실패: {e}")
+        greeting = f"안녕하세요! {weekday_name} 마케팅 소식 전해드립니다 😊 {weekday_msg}"
+
+    # === 텍스트 메시지 포맷팅 ===
+    try:
+        message = build_message_windows_date(
+            iboss_items=iboss_items,
+            neusral_categories=neusral_cats,
+            email_newsletters=email_newsletters,
+            heypop_items=heypop_items,
+            longblack_item=longblack_item,
+            stibee_items=stibee_items,
+            api_key=api_key,
+            model=model,
+            greeting=greeting,
+        )
+    except Exception as e:
+        print(f"  [ERROR] 메시지 생성 실패: {e}")
+        traceback.print_exc()
+        return
+
+    # === 미리보기 ===
+    if preview_only:
+        print("\n" + "=" * 60)
+        print(message)
+        print("=" * 60)
+        return
+
+    # === txt 파일 저장 ===
+    today = datetime.now()
+    today_str = today.strftime('%Y%m%d')
+    save_path = OUTPUT_DIR / f"output_{today_str}.txt"
+    save_path.write_text(message, encoding="utf-8")
+    print(f"\n  [OK] txt 저장 완료: {save_path.name}")
+
+    # === HTML 생성 + GitHub Pages 푸시 ===
+    if config.get("github", {}).get("enabled", True):
+        try:
+            docs_dir = OUTPUT_DIR / "docs"
+            html_path = save_newsletter(
+                iboss_items=iboss_items,
+                neusral_categories=neusral_cats,
+                heypop_items=heypop_items,
+                longblack_item=longblack_item,
+                stibee_items=stibee_items or [],
+                greeting=greeting,
+                docs_dir=docs_dir,
+            )
+            print(f"  [OK] HTML 생성 완료: {html_path.name}")
+            push_to_github(OUTPUT_DIR, today.strftime("%Y-%m-%d"))
+        except Exception as e:
+            print(f"  [WARN] HTML/GitHub 처리 실패: {e}")
+            traceback.print_exc()
+
+    print("=" * 60)
+    print(message)
+    print("=" * 60)
+
+
+def run_test(config: dict):
+    print("\n=== 수집기 테스트 ===\n")
+    for name, fn, args in [
+        ("아이보스", iboss.fetch, [config["sites"]["iboss"]["url"]]),
+        ("뉴스럴",  neusral.fetch, [config["sites"]["neusral"]["url"]]),
+        ("롱블랙",  longblack_collector.fetch, []),
+        ("헤이팝",  heypop.fetch, [config["sites"]["heypop"]["url"]]),
+    ]:
+        try:
+            result = fn(*args)
+            count = len(result) if isinstance(result, list) else (1 if result else 0)
+            print(f"  ✓ {name}: {count}건")
+        except Exception as e:
+            print(f"  ✗ {name}: {e}")
+
+
+def main():
+    args = sys.argv[1:]
+    preview_only = "--preview" in args
+    run_now = "--now" in args or "--preview" in args
+    test_mode = "--test" in args
+
+    config = load_config()
+
+    if test_mode:
+        run_test(config)
+        return
+
+    if run_now:
+        run_newsletter(config, preview_only=preview_only)
+        return
+
+    # 스케줄 모드
+    send_time = config.get("schedule", {}).get("send_time", "08:30")
+    print(f"스케줄러 시작 - 매일 {send_time}에 파일 생성")
+    print("종료: Ctrl+C\n")
+    schedule.every().day.at(send_time).do(run_newsletter, config=config)
+    while True:
+        schedule.run_pending()
+        time.sleep(30)
+
+
+if __name__ == "__main__":
+    main()
