@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="HIZ 마케팅 데일리 — 3월 26일">
+    <meta property="og:description" content="목요일 마케팅 뉴스레터 · HIZ">
+    <meta property="og:type" content="website">
+    <title>HIZ 마케팅 데일리 | 3월 26일</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+    font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #f0f2f5;
+    color: #1a1a2e;
+    line-height: 1.7;
+}
+a { color: inherit; text-decoration: none; }
+.wrapper { max-width: 680px; margin: 0 auto; padding: 32px 16px 64px; }
+
+/* 상단 네비 */
+.topnav { text-align: right; margin-bottom: 20px; }
+.topnav a { font-size: 12px; color: #6b7280; border: 1px solid #e5e7eb;
+             padding: 6px 14px; border-radius: 20px; transition: all 0.15s; }
+.topnav a:hover { background: white; color: #6366f1; border-color: #c7d2fe; }
+
+/* 헤더 */
+.header { background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+           color: white; padding: 40px 36px; border-radius: 20px; margin-bottom: 20px; }
+.header-meta { font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+                opacity: 0.45; margin-bottom: 10px; }
+.header-title { font-size: 28px; font-weight: 700; margin-bottom: 4px; }
+.header-subtitle { font-size: 14px; opacity: 0.5; margin-bottom: 28px; }
+.greeting-box { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1);
+                 border-radius: 14px; padding: 22px 24px; font-size: 14px; line-height: 1.9; }
+.greeting-box p { margin-bottom: 12px; }
+.greeting-box p:last-child { margin-bottom: 0; }
+
+/* 카드 */
+.card { background: white; border-radius: 16px; padding: 28px; margin-bottom: 16px;
+         box-shadow: 0 1px 4px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04); }
+.card-header { display: flex; align-items: center; gap: 8px; margin-bottom: 20px;
+                padding-bottom: 14px; border-bottom: 1px solid #f3f4f6; }
+.card-icon { font-size: 18px; }
+.card-title { font-size: 13px; font-weight: 600; color: #374151; }
+.card-source { font-size: 11px; color: #9ca3af; margin-left: auto;
+                background: #f9fafb; padding: 3px 10px; border-radius: 20px; }
+
+/* 아이보스 뉴스 */
+.news-item { padding: 16px 0; border-bottom: 1px solid #f3f4f6; }
+.news-item:last-child { border-bottom: none; padding-bottom: 0; }
+.news-num { display: inline-flex; align-items: center; justify-content: center;
+             width: 22px; height: 22px; background: #eef2ff; color: #6366f1;
+             border-radius: 50%; font-size: 11px; font-weight: 700; margin-bottom: 8px; }
+.news-title { font-size: 15px; font-weight: 600; margin-bottom: 6px; color: #111827; }
+.news-summary { font-size: 13px; color: #6b7280; line-height: 1.7; }
+
+/* 뉴스럴 카테고리 */
+.cat-item { padding: 14px 0; border-bottom: 1px solid #f3f4f6; }
+.cat-item:last-child { border-bottom: none; padding-bottom: 0; }
+.cat-badge { display: inline-block; font-size: 11px; font-weight: 600;
+               padding: 3px 10px; border-radius: 20px; margin-bottom: 10px; }
+.cat-badge.green  { background: #ecfdf5; color: #059669; }
+.cat-badge.blue   { background: #eff6ff; color: #3b82f6; }
+.cat-badge.purple { background: #f5f3ff; color: #8b5cf6; }
+.cat-badge.orange { background: #fff7ed; color: #ea580c; }
+.cat-badge.pink   { background: #fdf2f8; color: #db2777; }
+.cat-badge.teal   { background: #f0fdfa; color: #0d9488; }
+.cat-headlines { list-style: none; }
+.cat-headlines li { font-size: 13px; color: #4b5563; padding: 3px 0;
+                      display: flex; align-items: flex-start; gap: 6px; }
+.cat-headlines li::before { content: "›"; color: #d1d5db; flex-shrink: 0; }
+
+/* 헤이팝 */
+.heypop-item { padding: 16px 0; border-bottom: 1px solid #f3f4f6; }
+.heypop-item:last-child { border-bottom: none; padding-bottom: 0; }
+.heypop-title { font-size: 15px; font-weight: 600; color: #111827; margin-bottom: 4px; }
+.heypop-desc { font-size: 13px; color: #6b7280; margin-bottom: 10px; }
+.heypop-link { font-size: 12px; color: #6366f1; border: 1px solid #e0e7ff;
+                padding: 5px 14px; border-radius: 20px; display: inline-block; }
+.heypop-link:hover { background: #eef2ff; }
+
+/* 스티비 뉴스레터 */
+.stibee-item { padding: 14px 0; border-bottom: 1px solid #f3f4f6; }
+.stibee-item:last-child { border-bottom: none; padding-bottom: 0; }
+.stibee-source { font-size: 11px; font-weight: 600; color: #d97706;
+                   background: #fffbeb; padding: 3px 10px; border-radius: 20px;
+                   display: inline-block; margin-bottom: 8px; }
+.stibee-title { font-size: 14px; color: #374151; margin-bottom: 10px; }
+.stibee-link { font-size: 12px; color: #6366f1; border: 1px solid #e0e7ff;
+                padding: 5px 14px; border-radius: 20px; display: inline-block; }
+.stibee-link:hover { background: #eef2ff; }
+
+/* 롱블랙 */
+.longblack-title { font-size: 17px; font-weight: 700; color: #111827; margin-bottom: 6px; }
+.longblack-subtitle { font-size: 13px; color: #6b7280; margin-bottom: 16px; }
+.longblack-link { display: inline-flex; align-items: center; gap: 6px; font-size: 13px;
+                   font-weight: 500; color: white; background: #0f172a;
+                   padding: 9px 20px; border-radius: 20px; }
+.longblack-link:hover { background: #1e1b4b; }
+
+/* 푸터 */
+.footer { text-align: center; padding: 40px 0 0; }
+.footer-nav { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 16px; }
+.footer-nav a { font-size: 12px; color: #6b7280; border: 1px solid #e5e7eb;
+                  padding: 7px 16px; border-radius: 20px; }
+.footer-nav a:hover { background: white; color: #6366f1; }
+.footer-copy { font-size: 11px; color: #9ca3af; }
+
+/* 반응형 */
+@media (max-width: 500px) {
+    .header { padding: 28px 20px; }
+    .header-title { font-size: 22px; }
+    .card { padding: 20px; }
+}
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+    <div class="topnav">
+        <a href="archive.html">지난 뉴스레터 →</a>
+    </div>
+
+    <div class="header">
+        <div class="header-meta">HIZ DAILY · 2026-03-26</div>
+        <div class="header-title">3월 26일 마케팅 뉴스레터</div>
+        <div class="header-subtitle">목요일 · 매일 아침 자동 업데이트</div>
+        <div class="greeting-box"><p>안녕하세요! 목요일 마케팅 소식 전해드립니다 😊 오늘은 조금 색다른 이야기로 시작해볼게요. 롱블랙에서 소개한 '대전 빵택시'인데요, 성심당의 도시 대전에서 전직 여행 기획자 출신 택시 기사님이 빵집 투어 코스를 직접 설계해 운영하는 서비스입니다. 단순한 이동 수단이 아니라 '경험 설계자'로서의 역할을 스스로 만들어낸 사례인데, 요즘 로컬 콘텐츠와 개인 브랜딩이 어떻게 맞닿을 수 있는지를 잘 보여주는 이야기 같아 인상 깊었습니다.</p><p>마케팅 쪽에서는 알고리즘이 브랜드보다 강해지는 흐름이 계속되고 있습니다. 숏폼과 크리에이터 중심 소비가 자리를 잡으면서, 브랜드가 직접 메시지를 전달하는 방식보다 알고리즘이 어떤 콘텐츠를 밀어주느냐가 마케팅 성과를 더 크게 좌우하는 구조로 바뀌고 있는 거죠. 여기에 표시광고법 과징금 강화까지 더해지면서, '얼마나 잘 보이느냐'와 '얼마나 정확하게 말하느냐'를 동시에 챙겨야 하는 시대가 되고 있습니다.</p><p>이번 주도 거의 다 왔네요, 남은 하루 마무리 잘 하시고 곧 다가오는 주말 충분히 쉬세요! 🙌</p></div>
+    </div>
+
+    
+    <div class="card">
+        <div class="card-header">
+            <span class="card-icon">📰</span>
+            <span class="card-title">오늘의 마케팅 뉴스</span>
+            <span class="card-source">아이보스</span>
+        </div>
+        
+        <div class="news-item">
+            <div class="news-num">1</div>
+            <div class="news-title">메타, 인스타·페북에 쇼핑 링크 도입</div>
+            <div class="news-summary">메타가 인스타그램·페이스북 게시물에 상품 구매 페이지로 연결되는 쇼핑 링크 기능을 도입했다. 페이스북은 콘텐츠 내 직접 구매 링크, 인스타그램은 릴스에 최대 30개 상품 등록이 가능하다. 틱톡숍처럼 콘텐츠-구매 연결을 강화해 커머스 플랫폼으로 확장하려는 전략으로, 사용자 피로도 우려가 제기된다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">2</div>
+            <div class="news-title">다음, 텍스트 숏폼 커뮤니티 4월 출시</div>
+            <div class="news-summary">포털 다음이 4월 텍스트 기반 숏폼 커뮤니티 서비스를 출시한다. 기존 커뮤니티 탭을 개인화 소셜 피드 형태로 개편해 실시간 이슈 공유와 짧은 글 소통을 강화한다. ‘K트위터’ 형태로 체류시간 확대를 노린 전략이며, 크리에이터 보상 프로그램도 운영한다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">3</div>
+            <div class="news-title">표시광고법 과징금 강화… 반복 위반 시 최대 100% 가중</div>
+            <div class="news-summary">공정위가 표시광고법 개정으로 반복 위반 사업자 과징금을 최대 100%까지 가중한다. 5년 내 1회 위반도 최대 50% 가중 대상이 되며, 부과 기준율 하한도 상향된다. 반면 감경 기준은 축소돼 조사·심의 모두 협조 시에만 감경 가능하다. 전반적으로 제재를 강화해 법 위반 억제력을 높이려는 조치다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">4</div>
+            <div class="news-title">핀터레스트, 간편 광고 기능 출시… 소상공인도 활용 확대</div>
+            <div class="news-summary">핀터레스트가 몇 단계만으로 콘텐츠 노출을 늘리는 ‘프로모트 어 핀’ 기능을 출시한다. 복잡한 캠페인 없이 예산·기간 설정만으로 광고 집행이 가능하며, AI 기반 ‘테이스트 그래프’로 타깃을 최적화한다. 개인·소규모 사업자도 쉽게 활용할 수 있는 셀프 광고 기능으로, 미국에서 먼저 도입 예정이다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">5</div>
+            <div class="news-title">틱톡, 앱 첫 화면 광고 도입</div>
+            <div class="news-summary">틱톡이 앱 실행 시 노출되는 ‘로고 테이크오버’ 등 신규 광고를 도입했다. 특정 시간대 연속 노출 ‘프라임타임’, 첫 화면·피드 결합 ‘톱리치’ 등 도달형 광고를 강화했다. 또 콘텐츠·언급 기반 광고 ‘펄스’ 기능도 확장하며 브랜드 노출 극대화에 나섰다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">6</div>
+            <div class="news-title">프로야구 1200만 시대… 유통업계 팬심 마케팅 확대</div>
+            <div class="news-summary">프로야구 개막을 앞두고 유통업계가 굿즈·팝업·협업 상품 등으로 팬 공략에 나섰다. 편의점·이커머스·식품업계는 구단 협업 매장과 콘텐츠를 확대하며 매출 상승을 기대하고 있다. 높은 충성도의 팬덤을 기반으로 ‘굿즈 소비·체험형 마케팅’이 강화되는 추세다.</div>
+        </div>
+        <div class="news-item">
+            <div class="news-num">7</div>
+            <div class="news-title">알고리즘 권력 부상… 브랜드보다 콘텐츠가 좌우</div>
+            <div class="news-summary">숏폼·크리에이터 중심 소비가 확산되며 브랜드 영향력이 약화되고 알고리즘이 마케팅 성과를 좌우하는 구조로 전환되고 있다. 기업들은 광고 대신 콘텐츠 중심 전략으로 이동하며, 크리에이터 협업·자체 콘텐츠 생산을 강화 중이다. 이제 확산 구조와 플랫폼 적합성이 핵심 경쟁력으로 부상했다.</div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <span class="card-icon">🏷️</span>
+            <span class="card-title">카테고리별 헤드라인</span>
+            <span class="card-source">뉴스럴</span>
+        </div>
+        
+        <div class="cat-item">
+            <span class="cat-badge green">스타트업 뉴스</span>
+            <ul class="cat-headlines"><li>'배터리 관리 반도체' 아나배틱세미, 150억 시리즈B 투자유치</li><li>&quot;아이디어만 있으면 된다&quot;…대국민 창업오디션 '모두의 창업' 시작</li><li>중기부, AI 모델 개발사업 참여 中企 모집…16개 과제 선정</li></ul>
+        </div>
+        <div class="cat-item">
+            <span class="cat-badge blue">네카라쿠배당토 뉴스</span>
+            <ul class="cat-headlines"><li>네이버, 검색·디스플레이 광고통합 플랫폼 출시…“캠페인 성과 한 눈에”</li><li>네이버웹툰 미국 본사, 美 경제지 선정 '세계에서 가장 혁신적 기업' 4위</li><li>카카오엔터 팬 플랫폼 '베리즈', 론칭 1년 만에 202개국 글로벌 팬덤 플랫폼으로 안착</li></ul>
+        </div>
+        <div class="cat-item">
+            <span class="cat-badge purple">MZ 소비 트렌드</span>
+            <ul class="cat-headlines"><li>음식에 ‘식감’ 추구하는 MZ…”도넛 바삭하죠, 텍스쳐가 있잖아요”</li><li>“엄빠된 MZ 공략이 성공 열쇠죠”…롯데몰 식당가 바꾼 MZ 바이어</li><li>무신사에 러브콜 보내는 금융권…‘MZ 놀이터 잡자’</li></ul>
+        </div>
+        <div class="cat-item">
+            <span class="cat-badge orange">HR 뉴스</span>
+            <ul class="cat-headlines"><li>MS, AI 중심 인사조직 전면 재편...트럼프 요구 맞춰 다양성 전담 임원 폐지</li><li>의사 다음은 ‘SK하이닉사’… 평균 연봉 1억8000만원의 힘</li><li>사내복지 예산 줄이는 빅테크들 … 하나만 알고 둘은 모른다</li></ul>
+        </div>
+        <div class="cat-item">
+            <span class="cat-badge pink">AI 뉴스</span>
+            <ul class="cat-headlines"><li>앤트로픽, 스스로 위험 거르는 AI '오토 모드' 공개...&quot;개발자 승인 없이 코딩&quot;</li><li>오픈AI, 동영상 생성앱 ‘소라’ 철수…“기업용 AI 개발에 집중”</li><li>AI가 100% 코딩하는 시대… 사람 역할은 ‘하네스 엔지니어링’</li></ul>
+        </div>
+        <div class="cat-item">
+            <span class="cat-badge teal">ESG 뉴스</span>
+            <ul class="cat-headlines"><li>카타르 &quot;LNG 불가항력&quot;… 대체 수입선 찾고 에너지 믹스 조정을-오피니언</li><li>ESG 공시 의무화 법적 쟁점 “중대성 기준·그린워싱 규제 설계가 관건”</li><li>與 ‘자회사 중복상장’ 전면 손질…“6월 법개정 착수”</li></ul>
+        </div>
+        <div class="cat-item">
+            <span class="cat-badge green">트래블 뉴스</span>
+            <ul class="cat-headlines"><li>ICE 美공항 배치에 반응 엇갈려…&quot;통행 방해만&quot; vs &quot;도움된다&quot;</li><li>적벽과 벚꽃, 30만년 역사 품은 ‘임진적벽길’…봄 걷기 여행 명소로 주목</li><li>반려견과 ‘초록빛 힐링’ 여행~ 숲길 걷고 킁킁 노즈워킹 만끽</li></ul>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <span class="card-icon">🎨</span>
+            <span class="card-title">전시 / 팝업 / 공간 추천</span>
+            <span class="card-source">헤이팝</span>
+        </div>
+        
+        <div class="heypop-item">
+            <div class="heypop-title">비건들을 위한 축제, 누구나 환영합니다</div>
+            <div class="heypop-desc">〈제10회 비건페스타 &amp; 그린페스타〉</div>
+            <a class="heypop-link" href="https://heypop.kr/n/135170/" target="_blank">→ 자세히 보기</a>
+        </div>
+        <div class="heypop-item">
+            <div class="heypop-title">문구 덕후를 위한 큐레이션 포인트오브뷰,〈궁극의 마침표 문구들〉</div>
+            <div class="heypop-desc">『소비예찬』쓴 문구인 김규림이 고른 도구는?</div>
+            <a class="heypop-link" href="https://heypop.kr/n/135062/" target="_blank">→ 자세히 보기</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <span class="card-icon">📖</span>
+            <span class="card-title">오늘의 롱블랙 아티클</span>
+            <span class="card-source">롱블랙</span>
+        </div>
+        <div class="longblack-title">대전 빵택시 : 성심당의 도시에 ‘빵티칸 순례’ 설계한 전직 여행 기획자</div>
+        <div class="longblack-subtitle">롱블랙 프렌즈 C ‘대전 빵택시’라고 들어보셨어요? 택시를 타면, 기사님이 짜놓은 코스를 따라 빵집을 다니는 투어예요. 빵 추천은 물론, 기사님이 웨이팅 긴 곳의 줄을 대신 서 주기까지 하죠. 2025년 11월에 시작된 이 프로그램, 벌써 올해 12월까지 예약</div>
+        <a class="longblack-link" href="https://www.longblack.co/note/1928" target="_blank">아티클 읽기 →</a>
+    </div>
+
+    <div class="footer">
+        <div class="footer-nav">
+            <a href="archive.html">📁 전체 아카이브</a>
+            <a href="newsletters/2026-03-26.html">🔗 오늘 링크 공유</a>
+        </div>
+        <div class="footer-copy">HIZ 마케팅 에이전시 · 매일 자동 업데이트</div>
+    </div>
+
+</div>
+</body>
+</html>
