@@ -51,32 +51,41 @@ a { color: inherit; text-decoration: none; }
                   transition: background 0.15s; white-space: nowrap; }
 .v2-source-link:hover { background: #eef2ff; }
 
-/* 아이보스 뉴스 카드 */
-.v2-news-list { display: flex; flex-direction: column; gap: 10px; }
-.v2-news-card { display: flex; gap: 0; border-radius: 14px; overflow: hidden;
-                border: 1px solid #ebebeb; background: white;
-                box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
-.v2-news-thumb { flex-shrink: 0; width: 96px; display: flex; flex-direction: column;
-                 align-items: center; justify-content: center; gap: 6px; position: relative; }
-.v2-news-thumb-img { flex-shrink: 0; width: 96px; position: relative; overflow: hidden; }
-.v2-news-thumb-img img { width: 96px; height: 100%; min-height: 88px; object-fit: cover; display: block; }
-.v2-news-thumb-img .v2-news-num-badge { position: absolute; bottom: 6px; right: 6px; }
-.v2-news-emoji { font-size: 26px; }
-.v2-news-num-badge { font-size: 10px; font-weight: 800; color: white;
-                     background: rgba(0,0,0,0.45); border-radius: 8px;
-                     padding: 2px 6px; letter-spacing: 0.3px; }
-.v2-news-body { flex: 1; min-width: 0; padding: 14px 18px; display: flex; flex-direction: column; justify-content: center; }
-.v2-news-title { font-size: 14px; font-weight: 700; color: #0f172a; margin-bottom: 5px;
-                 line-height: 1.55; }
-.v2-news-summary { font-size: 12.5px; color: #64748b; line-height: 1.65; }
+/* 아이보스 — YouTube 썸네일 그리드 */
+.v2-yt-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+@media (max-width: 520px) { .v2-yt-grid { grid-template-columns: 1fr; } }
+.v2-yt-card { border-radius: 14px; overflow: hidden; border: 1px solid #ebebeb;
+              background: white; box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+              transition: transform 0.15s, box-shadow 0.15s; }
+.v2-yt-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
+.v2-yt-featured { grid-column: 1 / -1; }
+.v2-yt-hero { position: relative; aspect-ratio: 16 / 9; overflow: hidden; background: #e5e7eb; }
+.v2-yt-hero img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.v2-yt-hero-grad { display: flex; align-items: center; justify-content: center; }
+.v2-yt-emoji { font-size: 44px; }
+.v2-yt-featured .v2-yt-emoji { font-size: 56px; }
+.v2-yt-num { position: absolute; top: 10px; left: 10px;
+             background: rgba(0,0,0,0.72); color: white;
+             font-size: 11px; font-weight: 800; padding: 3px 9px;
+             border-radius: 6px; letter-spacing: 0.3px; }
+.v2-yt-body { padding: 13px 15px 15px; }
+.v2-yt-title { font-size: 13.5px; font-weight: 700; color: #0f172a; line-height: 1.5;
+               margin-bottom: 5px;
+               display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+               overflow: hidden; }
+.v2-yt-featured .v2-yt-title { font-size: 15px; -webkit-line-clamp: 3; }
+.v2-yt-summary { font-size: 12px; color: #64748b; line-height: 1.6;
+                 display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+                 overflow: hidden; }
+.v2-yt-featured .v2-yt-summary { -webkit-line-clamp: 3; }
 
 /* 뉴스럴 카테고리 */
 .v2-cat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 @media (max-width: 560px) { .v2-cat-grid { grid-template-columns: 1fr; } }
 .v2-cat-card { border-radius: 14px; overflow: hidden; border: 1px solid #ebebeb;
                background: white; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
-.v2-cat-hero { height: 80px; position: relative; overflow: hidden; }
-.v2-cat-hero img { width: 100%; height: 80px; object-fit: cover; display: block; }
+.v2-cat-hero { height: 100px; position: relative; overflow: hidden; }
+.v2-cat-hero img { width: 100%; height: 100px; object-fit: cover; display: block; }
 .v2-cat-hero-grad { display: flex; align-items: center; justify-content: center; }
 .v2-cat-hero-emoji { font-size: 28px; }
 .v2-cat-hero-label { position: absolute; bottom: 0; left: 0; right: 0;
@@ -129,7 +138,7 @@ a { color: inherit; text-decoration: none; }
               box-shadow: 0 6px 28px rgba(10,15,40,0.35); }
 .v2-lb-card:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(10,15,40,0.45); }
 .v2-lb-hero { height: 200px; overflow: hidden; }
-.v2-lb-hero img { width: 100%; height: 200px; object-fit: cover; opacity: 0.7; display: block; }
+.v2-lb-hero img { width: 100%; height: 200px; object-fit: cover; opacity: 1; display: block; }
 .v2-lb-content { padding: 28px 32px 32px; }
 .v2-lb-eyebrow { display: flex; align-items: center; gap: 8px; font-size: 11.5px;
                  opacity: 0.5; margin-bottom: 12px; letter-spacing: 1px; text-transform: uppercase; }
@@ -168,7 +177,7 @@ a { color: inherit; text-decoration: none; }
         <div class="v2-header-meta">BRANDRISE DAILY v2 · 2026-03-27</div>
         <div class="v2-header-title">3월 27일 마케팅 뉴스레터</div>
         <div class="v2-header-subtitle">금요일 · 매일 아침 자동 업데이트</div>
-        <div class="v2-greeting"><p>안녕하세요! 금요일 마케팅 소식 전해드립니다 😊 오늘은 코메다 커피 이야기를 먼저 꺼내고 싶습니다. '9시간 앉아 있어도 눈치 안 보이는 카페'라는 후기로 유명한 이 일본 체인은, 빠르게 회전시키고 효율을 높이는 대신 오히려 느긋한 대접을 브랜드 철학으로 삼아 일본 3위 카페로 성장했습니다. 단위 시간당 매출보다 고객이 머무는 경험을 선택한 이 역발상이, 지금 같은 경쟁 포화 시장에서 되려 강력한 차별점이 되었다는 점이 인상적입니다.</p><p>마케팅 흐름에서는 유튜브의 쇼핑 제휴 기준 완화 소식도 눈여겨볼 만합니다. 구독자 500명만 되어도 제품 태그로 수익화가 가능해지면서, 소규모 크리에이터와 브랜드가 협업할 수 있는 접점이 훨씬 넓어졌습니다. 인플루언서 마케팅의 문턱이 낮아지는 만큼, 진정성 있는 콘텐츠를 가진 소규모 채널을 발굴하는 것이 앞으로 더 유효한 전략이 될 수 있겠습니다.</p><p>한 주 동안 정말 수고 많으셨습니다. 주말에는 충분히 쉬시고 다음 주도 활기차게 시작하시길 바랍니다! 🍀</p></div>
+        <div class="v2-greeting"><p>안녕하세요! 금요일 마케팅 소식 전해드립니다 😊 오늘은 코메다 커피 이야기를 먼저 꺼내고 싶습니다. '9시간 앉아 있어도 눈치 안 보이는 카페'라는 후기로 유명한 이 브랜드, 빠르게 회전율을 높이고 메뉴를 늘리는 대신 오히려 '느긋한 대접'을 브랜드 철학으로 삼아 일본 3위 카페 체인이 됐습니다. 효율보다 경험을, 많은 것보다 일관된 것을 택한 선택이 결국 충성 고객과 차별화된 포지셔닝으로 이어진 사례인데, 요즘처럼 자극적인 마케팅이 넘쳐나는 시대에 오히려 더 선명하게 다가오는 이야기입니다.</p><p>마케팅 소식에서는 유튜브의 쇼핑 제휴 기준 완화가 인상적입니다. 구독자 500명만 돼도 제품 태그로 수익화가 가능해지면서, 이제 '소규모 크리에이터'와 '브랜드 협업'의 경계가 훨씬 낮아졌습니다. 마이크로 인플루언서를 활용한 커머스 전략을 고민하고 계신 분들이라면 주목해볼 만한 변화입니다. 오픈AI의 소라 종료 소식도 AI 시장이 화제성보다 수익성 중심으로 재편되고 있음을 보여주는 흐름이라 함께 새겨둘 만합니다.</p><p>한 주 동안 정말 수고 많으셨습니다. 주말엔 코메다 커피처럼, 아무 눈치 없이 푹 쉬고 오세요! 🍀</p></div>
     </div>
 
     
@@ -181,54 +190,54 @@ a { color: inherit; text-decoration: none; }
             </div>
             
         </div>
-        <div class="v2-news-list">
-        <div class="v2-news-card">
-            <div class="v2-news-thumb v2-news-thumb-img"><img src="../images/2026-03-27/iboss-1.png" alt="" loading="lazy"><span class="v2-news-num-badge">1</span></div>
-            <div class="v2-news-body">
-                <div class="v2-news-title">유튜브, 쇼핑 제휴 기준 완화… 구독자 500명도 수익화</div>
-                <p class="v2-news-summary">유튜브가 제휴 쇼핑 프로그램 기준을 구독자 500명까지 낮춰 크리에이터 수익 기회를 확대했다. 제품 태그로 수수료를 얻는 구조로, 쇼핑 콘텐츠 성장에 맞춰 커머스 기능 강화 전략이 본격화되고 있다.</p>
+        <div class="v2-yt-grid">
+        <div class="v2-yt-card v2-yt-featured">
+            <div class="v2-yt-hero"><img src="../images/2026-03-27/iboss-1.png" alt="" loading="lazy"><span class="v2-yt-num">1</span></div>
+            <div class="v2-yt-body">
+                <div class="v2-yt-title">유튜브, 쇼핑 제휴 기준 완화… 구독자 500명도 수익화</div>
+                <p class="v2-yt-summary">유튜브가 제휴 쇼핑 프로그램 기준을 구독자 500명까지 낮춰 크리에이터 수익 기회를 확대했다. 제품 태그로 수수료를 얻는 구조로, 쇼핑 콘텐츠 성장에 맞춰 커머스 기능 강화 전략이 본격화되고 있다.</p>
             </div>
         </div>
-        <div class="v2-news-card">
-            <div class="v2-news-thumb v2-news-thumb-img"><img src="../images/2026-03-27/iboss-2.png" alt="" loading="lazy"><span class="v2-news-num-badge">2</span></div>
-            <div class="v2-news-body">
-                <div class="v2-news-title">네이버 가품 방지 효과… 판매액 34%·판매량 20% 증가</div>
-                <p class="v2-news-summary">네이버의 가품 방지 활동이 판매자 성과와 소비자 신뢰를 동시에 끌어올린 것으로 나타났다. 협력 판매자의 판매액은 34%, 판매량은 20% 증가했으며 방문·좋아요도 상승했다. 소비자 80% 이상이 효과를 체감했고, 브랜드사 92%가 긍정적 영향을 평가했다.</p>
+        <div class="v2-yt-card">
+            <div class="v2-yt-hero"><img src="../images/2026-03-27/iboss-2.png" alt="" loading="lazy"><span class="v2-yt-num">2</span></div>
+            <div class="v2-yt-body">
+                <div class="v2-yt-title">네이버 가품 방지 효과… 판매액 34%·판매량 20% 증가</div>
+                <p class="v2-yt-summary">네이버의 가품 방지 활동이 판매자 성과와 소비자 신뢰를 동시에 끌어올린 것으로 나타났다. 협력 판매자의 판매액은 34%, 판매량은 20% 증가했으며 방문·좋아요도 상승했다. 소비자 80% 이상이 효과를 체감했고, 브랜드사 92%가 긍정적 영향을 평가했다.</p>
             </div>
         </div>
-        <div class="v2-news-card">
-            <div class="v2-news-thumb v2-news-thumb-img"><img src="../images/2026-03-27/iboss-3.png" alt="" loading="lazy"><span class="v2-news-num-badge">3</span></div>
-            <div class="v2-news-body">
-                <div class="v2-news-title">OTT 광고형 구독 확산</div>
-                <p class="v2-news-summary">KT나스미디어에 따르면 OTT 이용자의 59.7%가 광고형 요금제를 사용하며 광고 매체로 영향력도 커졌다. TV는 유튜브·OTT 중심으로 재편되고, 콘텐츠 혜택은 쇼핑 멤버십 유지 핵심 요소로 부상하며 미디어·커머스 결합이 강화되고 있다.</p>
+        <div class="v2-yt-card">
+            <div class="v2-yt-hero"><img src="../images/2026-03-27/iboss-3.png" alt="" loading="lazy"><span class="v2-yt-num">3</span></div>
+            <div class="v2-yt-body">
+                <div class="v2-yt-title">OTT 광고형 구독 확산</div>
+                <p class="v2-yt-summary">KT나스미디어에 따르면 OTT 이용자의 59.7%가 광고형 요금제를 사용하며 광고 매체로 영향력도 커졌다. TV는 유튜브·OTT 중심으로 재편되고, 콘텐츠 혜택은 쇼핑 멤버십 유지 핵심 요소로 부상하며 미디어·커머스 결합이 강화되고 있다.</p>
             </div>
         </div>
-        <div class="v2-news-card">
-            <div class="v2-news-thumb v2-news-thumb-img"><img src="../images/2026-03-27/iboss-4.png" alt="" loading="lazy"><span class="v2-news-num-badge">4</span></div>
-            <div class="v2-news-body">
-                <div class="v2-news-title">웹툰도 숏폼화… 릴스툰 인기 이유</div>
-                <p class="v2-news-summary">인스타그램 릴스를 활용한 ‘릴스툰’이 확산되며 웹툰 소비 방식이 변화하고 있다. 영상 형태로 제작된 웹툰은 알고리즘 영향으로 이미지보다 3~5배 노출되며 높은 조회수를 기록한다. 짧고 몰입도 높은 콘텐츠 특성에 광고·구독 모델 결합도 가능해 새로운 수익 모델로 부상 중이다.</p>
+        <div class="v2-yt-card">
+            <div class="v2-yt-hero"><img src="../images/2026-03-27/iboss-4.png" alt="" loading="lazy"><span class="v2-yt-num">4</span></div>
+            <div class="v2-yt-body">
+                <div class="v2-yt-title">웹툰도 숏폼화… 릴스툰 인기 이유</div>
+                <p class="v2-yt-summary">인스타그램 릴스를 활용한 ‘릴스툰’이 확산되며 웹툰 소비 방식이 변화하고 있다. 영상 형태로 제작된 웹툰은 알고리즘 영향으로 이미지보다 3~5배 노출되며 높은 조회수를 기록한다. 짧고 몰입도 높은 콘텐츠 특성에 광고·구독 모델 결합도 가능해 새로운 수익 모델로 부상 중이다.</p>
             </div>
         </div>
-        <div class="v2-news-card">
-            <div class="v2-news-thumb v2-news-thumb-img"><img src="../images/2026-03-27/iboss-5.png" alt="" loading="lazy"><span class="v2-news-num-badge">5</span></div>
-            <div class="v2-news-body">
-                <div class="v2-news-title">메타, K브랜드 美 진출 지원… 광고·AI 교육 강화</div>
-                <p class="v2-news-summary">메타가 국내 중소기업의 미국 진출을 돕는 교육 프로그램을 운영했다. 광고·데이터·AI 기반 마케팅과 크리에이터 협업 전략을 제공하며, 글로벌 시장에서 브랜드 인지도와 구매 전환을 높이는 실전 가이드를 지원한다.</p>
+        <div class="v2-yt-card">
+            <div class="v2-yt-hero"><img src="../images/2026-03-27/iboss-5.png" alt="" loading="lazy"><span class="v2-yt-num">5</span></div>
+            <div class="v2-yt-body">
+                <div class="v2-yt-title">메타, K브랜드 美 진출 지원… 광고·AI 교육 강화</div>
+                <p class="v2-yt-summary">메타가 국내 중소기업의 미국 진출을 돕는 교육 프로그램을 운영했다. 광고·데이터·AI 기반 마케팅과 크리에이터 협업 전략을 제공하며, 글로벌 시장에서 브랜드 인지도와 구매 전환을 높이는 실전 가이드를 지원한다.</p>
             </div>
         </div>
-        <div class="v2-news-card">
-            <div class="v2-news-thumb v2-news-thumb-img"><img src="../images/2026-03-27/iboss-6.png" alt="" loading="lazy"><span class="v2-news-num-badge">6</span></div>
-            <div class="v2-news-body">
-                <div class="v2-news-title">이커머스, 합성 니코틴 판매 금지… 전자담배 규제 확대</div>
-                <p class="v2-news-summary">담배사업법 개정으로 합성 니코틴도 ‘담배’로 포함되면서 쿠팡·카페24 등 이커머스가 니코틴 제품 온라인 판매를 전면 금지한다. 플랫폼은 법적 리스크 대응과 청소년 보호를 위해 규제 강화에 나섰다.</p>
+        <div class="v2-yt-card">
+            <div class="v2-yt-hero"><img src="../images/2026-03-27/iboss-6.png" alt="" loading="lazy"><span class="v2-yt-num">6</span></div>
+            <div class="v2-yt-body">
+                <div class="v2-yt-title">이커머스, 합성 니코틴 판매 금지… 전자담배 규제 확대</div>
+                <p class="v2-yt-summary">담배사업법 개정으로 합성 니코틴도 ‘담배’로 포함되면서 쿠팡·카페24 등 이커머스가 니코틴 제품 온라인 판매를 전면 금지한다. 플랫폼은 법적 리스크 대응과 청소년 보호를 위해 규제 강화에 나섰다.</p>
             </div>
         </div>
-        <div class="v2-news-card">
-            <div class="v2-news-thumb v2-news-thumb-img"><img src="../images/2026-03-27/iboss-7.png" alt="" loading="lazy"><span class="v2-news-num-badge">7</span></div>
-            <div class="v2-news-body">
-                <div class="v2-news-title">오픈AI, 소라 종료… 수익 중심 AI 전략 전환</div>
-                <p class="v2-news-summary">오픈AI가 영상 생성 AI ‘소라’를 종료하고 수익성 높은 B2B·광고 사업에 집중한다. 높은 비용 대비 수익 한계와 IPO 준비가 배경이다. AI 경쟁이 기술에서 수익화로 이동하며 네이버·카카오도 유사 전략으로 전환 중이다.</p>
+        <div class="v2-yt-card">
+            <div class="v2-yt-hero"><img src="../images/2026-03-27/iboss-7.png" alt="" loading="lazy"><span class="v2-yt-num">7</span></div>
+            <div class="v2-yt-body">
+                <div class="v2-yt-title">오픈AI, 소라 종료… 수익 중심 AI 전략 전환</div>
+                <p class="v2-yt-summary">오픈AI가 영상 생성 AI ‘소라’를 종료하고 수익성 높은 B2B·광고 사업에 집중한다. 높은 비용 대비 수익 한계와 IPO 준비가 배경이다. AI 경쟁이 기술에서 수익화로 이동하며 네이버·카카오도 유사 전략으로 전환 중이다.</p>
             </div>
         </div></div>
     </div>
