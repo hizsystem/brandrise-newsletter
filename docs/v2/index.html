@@ -52,88 +52,93 @@ a { color: inherit; text-decoration: none; }
 .v2-source-link:hover { background: #eef2ff; }
 
 /* 아이보스 뉴스 카드 */
-.v2-news-list { display: flex; flex-direction: column; gap: 12px; }
-.v2-news-card { display: flex; gap: 0; border-radius: 12px; overflow: hidden;
-                border: 1px solid #f3f4f6; background: #fafafa; }
-.v2-news-thumb { flex-shrink: 0; width: 88px; display: flex; flex-direction: column;
+.v2-news-list { display: flex; flex-direction: column; gap: 10px; }
+.v2-news-card { display: flex; gap: 0; border-radius: 14px; overflow: hidden;
+                border: 1px solid #ebebeb; background: white;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+.v2-news-thumb { flex-shrink: 0; width: 96px; display: flex; flex-direction: column;
                  align-items: center; justify-content: center; gap: 6px; position: relative; }
-.v2-news-thumb-img { flex-shrink: 0; width: 88px; position: relative; overflow: hidden; }
-.v2-news-thumb-img img { width: 88px; height: 100%; min-height: 80px; object-fit: cover; display: block; }
-.v2-news-thumb-img .v2-news-num-badge { position: absolute; bottom: 5px; right: 5px; }
-.v2-news-emoji { font-size: 24px; }
-.v2-news-num-badge { font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.9);
-                     background: rgba(0,0,0,0.25); border-radius: 10px;
-                     padding: 2px 7px; }
-.v2-news-body { flex: 1; min-width: 0; padding: 14px 16px; }
-.v2-news-title { font-size: 14px; font-weight: 600; color: #111827; margin-bottom: 5px;
-                 line-height: 1.5; }
-.v2-news-summary { font-size: 12px; color: #6b7280; line-height: 1.7; }
+.v2-news-thumb-img { flex-shrink: 0; width: 96px; position: relative; overflow: hidden; }
+.v2-news-thumb-img img { width: 96px; height: 100%; min-height: 88px; object-fit: cover; display: block; }
+.v2-news-thumb-img .v2-news-num-badge { position: absolute; bottom: 6px; right: 6px; }
+.v2-news-emoji { font-size: 26px; }
+.v2-news-num-badge { font-size: 10px; font-weight: 800; color: white;
+                     background: rgba(0,0,0,0.45); border-radius: 8px;
+                     padding: 2px 6px; letter-spacing: 0.3px; }
+.v2-news-body { flex: 1; min-width: 0; padding: 14px 18px; display: flex; flex-direction: column; justify-content: center; }
+.v2-news-title { font-size: 14px; font-weight: 700; color: #0f172a; margin-bottom: 5px;
+                 line-height: 1.55; }
+.v2-news-summary { font-size: 12.5px; color: #64748b; line-height: 1.65; }
 
 /* 뉴스럴 카테고리 */
 .v2-cat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 @media (max-width: 560px) { .v2-cat-grid { grid-template-columns: 1fr; } }
-.v2-cat-card { border-radius: 12px; overflow: hidden; border: 1px solid #f3f4f6; background: #fafafa; }
-.v2-cat-hero { height: 72px; position: relative; overflow: hidden; }
-.v2-cat-hero img { width: 100%; height: 72px; object-fit: cover; display: block; }
+.v2-cat-card { border-radius: 14px; overflow: hidden; border: 1px solid #ebebeb;
+               background: white; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+.v2-cat-hero { height: 80px; position: relative; overflow: hidden; }
+.v2-cat-hero img { width: 100%; height: 80px; object-fit: cover; display: block; }
 .v2-cat-hero-grad { display: flex; align-items: center; justify-content: center; }
-.v2-cat-hero-emoji { font-size: 26px; }
+.v2-cat-hero-emoji { font-size: 28px; }
 .v2-cat-hero-label { position: absolute; bottom: 0; left: 0; right: 0;
-    background: linear-gradient(transparent, rgba(0,0,0,0.65));
-    color: white; font-size: 11px; font-weight: 700; padding: 8px 10px 5px; }
-.v2-cat-body { padding: 10px 12px 12px; }
-.v2-headline-list { list-style: none; display: flex; flex-direction: column; gap: 4px; }
-.v2-headline-item { font-size: 11px; color: #4b5563; line-height: 1.5;
-                    padding-left: 10px; position: relative; }
-.v2-headline-item::before { content: "›"; position: absolute; left: 0; color: #d1d5db; }
+    background: linear-gradient(transparent, rgba(0,0,0,0.72));
+    color: white; font-size: 11.5px; font-weight: 700; padding: 10px 10px 6px;
+    letter-spacing: 0.2px; }
+.v2-cat-body { padding: 12px 14px 14px; }
+.v2-headline-list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+.v2-headline-item { font-size: 12px; color: #374151; line-height: 1.55;
+                    padding-left: 12px; position: relative; }
+.v2-headline-item::before { content: "›"; position: absolute; left: 0; color: #9ca3af;
+                            font-size: 14px; line-height: 1.3; }
 
 /* 헤이팝 — 이미지 카드 */
 .v2-heypop-list { display: flex; flex-direction: column; gap: 12px; }
-.v2-heypop-card { display: flex; gap: 16px; border-radius: 12px; overflow: hidden;
-                  background: #fafafa; border: 1px solid #f3f4f6;
+.v2-heypop-card { display: flex; gap: 0; border-radius: 14px; overflow: hidden;
+                  background: white; border: 1px solid #ebebeb;
+                  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
                   transition: box-shadow 0.15s, transform 0.15s; }
-.v2-heypop-card:hover { box-shadow: 0 4px 20px rgba(99,102,241,0.15); transform: translateY(-1px); }
-.v2-thumb { width: 120px; height: 90px; object-fit: cover; flex-shrink: 0; }
-.v2-thumb-placeholder { width: 120px; height: 90px; display: flex; align-items: center;
-                         justify-content: center; font-size: 32px; background: #f3f4f6; flex-shrink: 0; }
-.v2-heypop-info { padding: 12px 16px 12px 0; display: flex; flex-direction: column;
-                  justify-content: center; gap: 4px; min-width: 0; }
-.v2-heypop-title { font-size: 14px; font-weight: 600; color: #111827; line-height: 1.4; }
-.v2-heypop-desc { font-size: 12px; color: #6b7280; }
-.v2-heypop-cta { font-size: 11px; color: #6366f1; font-weight: 500; margin-top: 4px; }
+.v2-heypop-card:hover { box-shadow: 0 6px 24px rgba(99,102,241,0.14); transform: translateY(-1px); }
+.v2-thumb { width: 130px; height: 100px; object-fit: cover; flex-shrink: 0; }
+.v2-thumb-placeholder { width: 130px; height: 100px; display: flex; align-items: center;
+                         justify-content: center; font-size: 36px; background: #f3f4f6; flex-shrink: 0; }
+.v2-heypop-info { padding: 14px 18px; display: flex; flex-direction: column;
+                  justify-content: center; gap: 5px; min-width: 0; }
+.v2-heypop-title { font-size: 14px; font-weight: 700; color: #0f172a; line-height: 1.45; }
+.v2-heypop-desc { font-size: 12.5px; color: #64748b; line-height: 1.55; }
+.v2-heypop-cta { font-size: 11.5px; color: #6366f1; font-weight: 600; margin-top: 2px; }
 
 /* 스티비 뉴스레터 */
 .v2-stibee-list { display: flex; flex-direction: column; gap: 10px; }
-.v2-stibee-card { display: flex; flex-direction: column; gap: 6px; padding: 16px 18px;
-                  background: #fafafa; border-radius: 12px; border: 1px solid #f3f4f6;
-                  transition: box-shadow 0.15s; overflow: hidden; }
-.v2-stibee-card:hover { box-shadow: 0 4px 16px rgba(99,102,241,0.12); }
+.v2-stibee-card { display: flex; flex-direction: column; gap: 6px; padding: 18px 20px;
+                  background: white; border-radius: 14px; border: 1px solid #ebebeb;
+                  box-shadow: 0 1px 3px rgba(0,0,0,0.05); transition: box-shadow 0.15s; overflow: hidden; }
+.v2-stibee-card:hover { box-shadow: 0 6px 20px rgba(99,102,241,0.12); }
 .v2-stibee-card-img { flex-direction: row; padding: 0; gap: 0; }
-.v2-stibee-thumb { width: 110px; height: 90px; object-fit: cover; flex-shrink: 0; }
-.v2-stibee-info { padding: 14px 16px; flex: 1; min-width: 0; display: flex;
-                  flex-direction: column; gap: 5px; justify-content: center; }
-.v2-stibee-badge { display: inline-block; font-size: 11px; font-weight: 600; color: #d97706;
-                   background: #fffbeb; padding: 3px 10px; border-radius: 20px;
-                   align-self: flex-start; }
-.v2-stibee-title { font-size: 14px; color: #374151; }
-.v2-stibee-cta { font-size: 11px; color: #6366f1; font-weight: 500; }
+.v2-stibee-thumb { width: 120px; height: 100px; object-fit: cover; flex-shrink: 0; }
+.v2-stibee-info { padding: 16px 18px; flex: 1; min-width: 0; display: flex;
+                  flex-direction: column; gap: 6px; justify-content: center; }
+.v2-stibee-badge { display: inline-block; font-size: 11px; font-weight: 700; color: #b45309;
+                   background: #fef3c7; padding: 3px 10px; border-radius: 20px;
+                   align-self: flex-start; letter-spacing: 0.2px; }
+.v2-stibee-title { font-size: 14px; font-weight: 600; color: #1e293b; line-height: 1.5; }
+.v2-stibee-cta { font-size: 12px; color: #6366f1; font-weight: 600; }
 
 /* 롱블랙 — 클릭 가능한 피처드 카드 */
-.v2-lb-card { display: block; background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-              color: white; border-radius: 16px; overflow: hidden; margin-bottom: 16px;
-              transition: transform 0.15s, box-shadow 0.15s;
-              box-shadow: 0 4px 20px rgba(15,23,42,0.25); }
-.v2-lb-card:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(15,23,42,0.35); }
-.v2-lb-hero { height: 180px; overflow: hidden; }
-.v2-lb-hero img { width: 100%; height: 180px; object-fit: cover; opacity: 0.75; display: block; }
-.v2-lb-content { padding: 28px 32px; }
-.v2-lb-eyebrow { display: flex; align-items: center; gap: 8px; font-size: 12px;
-                 opacity: 0.55; margin-bottom: 14px; letter-spacing: 0.5px; }
-.v2-lb-icon { font-size: 16px; }
-.v2-lb-title { font-size: 20px; font-weight: 700; line-height: 1.4; margin-bottom: 10px; }
-.v2-lb-subtitle { font-size: 13px; opacity: 0.65; line-height: 1.8; margin-bottom: 20px; }
-.v2-lb-cta { display: inline-block; font-size: 12px; font-weight: 600;
-             background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2);
-             padding: 8px 18px; border-radius: 20px; }
+.v2-lb-card { display: block; background: linear-gradient(160deg, #0c0f1a 0%, #1a1f3a 100%);
+              color: white; border-radius: 20px; overflow: hidden; margin-bottom: 16px;
+              transition: transform 0.18s, box-shadow 0.18s;
+              box-shadow: 0 6px 28px rgba(10,15,40,0.35); }
+.v2-lb-card:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(10,15,40,0.45); }
+.v2-lb-hero { height: 200px; overflow: hidden; }
+.v2-lb-hero img { width: 100%; height: 200px; object-fit: cover; opacity: 0.7; display: block; }
+.v2-lb-content { padding: 28px 32px 32px; }
+.v2-lb-eyebrow { display: flex; align-items: center; gap: 8px; font-size: 11.5px;
+                 opacity: 0.5; margin-bottom: 12px; letter-spacing: 1px; text-transform: uppercase; }
+.v2-lb-icon { font-size: 15px; }
+.v2-lb-title { font-size: 21px; font-weight: 800; line-height: 1.4; margin-bottom: 10px; letter-spacing: -0.3px; }
+.v2-lb-subtitle { font-size: 13.5px; opacity: 0.6; line-height: 1.8; margin-bottom: 22px; }
+.v2-lb-cta { display: inline-flex; align-items: center; gap: 6px; font-size: 12.5px; font-weight: 700;
+             background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+             padding: 9px 20px; border-radius: 24px; letter-spacing: 0.3px; }
 
 /* 푸터 */
 .v2-footer { text-align: center; padding: 40px 0 0; }
@@ -163,7 +168,7 @@ a { color: inherit; text-decoration: none; }
         <div class="v2-header-meta">BRANDRISE DAILY v2 · 2026-03-27</div>
         <div class="v2-header-title">3월 27일 마케팅 뉴스레터</div>
         <div class="v2-header-subtitle">금요일 · 매일 아침 자동 업데이트</div>
-        <div class="v2-greeting"><p>안녕하세요! 금요일 마케팅 소식 전해드립니다 😊 오늘은 롱블랙에서 소개한 코메다 커피 이야기가 특히 인상적이었습니다. '9시간 앉아 있어도 눈치 안 보이는 카페'라는 후기를 자랑하는 이 브랜드는, 빠르게 회전율을 높이거나 트렌디한 메뉴를 앞세우는 대신 '느긋한 대접'이라는 단 하나의 원칙을 지켜온 덕분에 일본 3위 카페 체인이 됐습니다. 효율보다 경험을 택한 브랜드가 어떻게 오래 살아남는지를 보여주는 사례라, 마케터라면 한 번쯤 찾아볼 만한 아티클입니다.</p><p>한편 유튜브가 쇼핑 제휴 기준을 구독자 500명까지 낮추면서, 이제는 작은 채널도 제품 태그 하나로 수익 구조를 만들 수 있는 시대가 됐습니다. 크리에이터 저변이 넓어질수록 브랜드 입장에서는 협업 옵션도 다양해지는 만큼, 마이크로 인플루언서 전략을 고민 중이라면 이번 변화가 좋은 기회가 될 수 있겠습니다.</p><p>한 주 동안 정말 수고 많으셨습니다. 주말엔 코메다 커피처럼 여유롭게 쉬어가시길 바랍니다! 🍀</p></div>
+        <div class="v2-greeting"><p>안녕하세요! 금요일 마케팅 소식 전해드립니다 😊 오늘은 코메다 커피 이야기를 먼저 꺼내고 싶습니다. '9시간 앉아 있어도 눈치 안 보이는 카페'라는 후기로 유명한 이 일본 체인은, 빠르게 회전시키고 효율을 높이는 대신 오히려 느긋한 대접을 브랜드 철학으로 삼아 일본 3위 카페로 성장했습니다. 단위 시간당 매출보다 고객이 머무는 경험을 선택한 이 역발상이, 지금 같은 경쟁 포화 시장에서 되려 강력한 차별점이 되었다는 점이 인상적입니다.</p><p>마케팅 흐름에서는 유튜브의 쇼핑 제휴 기준 완화 소식도 눈여겨볼 만합니다. 구독자 500명만 되어도 제품 태그로 수익화가 가능해지면서, 소규모 크리에이터와 브랜드가 협업할 수 있는 접점이 훨씬 넓어졌습니다. 인플루언서 마케팅의 문턱이 낮아지는 만큼, 진정성 있는 콘텐츠를 가진 소규모 채널을 발굴하는 것이 앞으로 더 유효한 전략이 될 수 있겠습니다.</p><p>한 주 동안 정말 수고 많으셨습니다. 주말에는 충분히 쉬시고 다음 주도 활기차게 시작하시길 바랍니다! 🍀</p></div>
     </div>
 
     
@@ -289,10 +294,13 @@ a { color: inherit; text-decoration: none; }
             </div>
         </div>
         <div class="v2-stibee-list">
-        <a class="v2-stibee-card" href="https://stibee.com/api/v1.0/emails/share/m8j3lqr1-AJKk8T96pWrMMXl7iiLes4" target="_blank" rel="noopener">
-            <span class="v2-stibee-badge">까탈로그</span>
-            <div class="v2-stibee-title">까탈스럽게 고른 취향 뉴스레터</div>
-            <span class="v2-stibee-cta">뉴스레터 보기 →</span>
+        <a class="v2-stibee-card v2-stibee-card-img" href="https://stibee.com/api/v1.0/emails/share/m8j3lqr1-AJKk8T96pWrMMXl7iiLes4" target="_blank" rel="noopener">
+            <img class="v2-stibee-thumb" src="images/2026-03-27/stibee-0.jpg" alt="" loading="lazy">
+            <div class="v2-stibee-info">
+                <span class="v2-stibee-badge">까탈로그</span>
+                <div class="v2-stibee-title">까탈스럽게 고른 취향 뉴스레터</div>
+                <span class="v2-stibee-cta">뉴스레터 보기 →</span>
+            </div>
         </a></div>
     </div>
 
