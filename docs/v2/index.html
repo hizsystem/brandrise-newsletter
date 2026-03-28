@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta property="og:title" content="Brandrise 데일리 — 3월 28일">
-    <meta property="og:description" content="토요일 마케팅 뉴스레터 · Brandrise">
-    <meta property="og:type" content="website">
-    <title>Brandrise 데일리 v2 | 3월 28일</title>
+    <meta property="og:title" content="Brandrise 데일리 — 이번 주 아카이브">
+    <meta property="og:description" content="3월 23일 — 3월 27일 마케팅 뉴스레터 모아보기">
+    <title>Brandrise 데일리 v2 | 이번 주 아카이브</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -158,6 +157,24 @@ a { color: inherit; text-decoration: none; }
 .v2-footer-nav a:hover { background: white; color: #6366f1; }
 .v2-footer-copy { font-size: 11px; color: #9ca3af; }
 
+/* 주간 아카이브 */
+.v2-arc-week { font-size: 13px; opacity: 0.5; margin-bottom: 28px; letter-spacing: 0.5px; }
+.v2-arc-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-bottom: 16px; }
+@media (max-width: 560px) { .v2-arc-grid { grid-template-columns: repeat(2, 1fr); } }
+.v2-arc-card { border-radius: 14px; padding: 18px 14px; display: flex; flex-direction: column;
+               gap: 6px; border: 1px solid #ebebeb; background: white;
+               box-shadow: 0 1px 4px rgba(0,0,0,0.05); text-align: center; }
+.v2-arc-card-active { transition: transform 0.15s, box-shadow 0.15s; }
+.v2-arc-card-active:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(99,102,241,0.15); }
+.v2-arc-card-empty { opacity: 0.45; }
+.v2-arc-day { font-size: 13px; font-weight: 800; color: #6366f1; }
+.v2-arc-card-empty .v2-arc-day { color: #9ca3af; }
+.v2-arc-date { font-size: 11.5px; color: #374151; font-weight: 500; }
+.v2-arc-lb { font-size: 11px; color: #64748b; line-height: 1.45; margin-top: 2px;
+             display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.v2-arc-cta { font-size: 11px; font-weight: 700; color: #6366f1; margin-top: 4px; }
+.v2-arc-cta-none { color: #d1d5db; font-weight: 400; }
+
 /* 반응형 */
 @media (max-width: 500px) {
     .v2-header { padding: 28px 20px; }
@@ -172,32 +189,54 @@ a { color: inherit; text-decoration: none; }
 <body>
 <div class="v2-wrapper">
 
-    
-
     <div class="v2-header">
-        <div class="v2-header-meta">BRANDRISE DAILY v2 · 2026-03-28</div>
-        <div class="v2-header-title">3월 28일 마케팅 뉴스레터</div>
-        <div class="v2-header-subtitle">토요일 · 매일 아침 자동 업데이트</div>
-        <div class="v2-greeting"><p>안녕하세요! 토요일 마케팅 소식 전해드립니다 😊 오늘은 조금 다른 이야기로 문을 열어볼게요. 롱블랙에서 흥미로운 아티클을 다뤘는데요, 바로 '유머는 재능이 아니라 근육이다'라는 주제입니다. 유머 감각은 타고나는 것이라 여기며 포기해온 분들이라면, 이 관점 하나가 꽤 반가울 거예요. 웃음을 만들어내는 능력이 연습으로 길러질 수 있다면, 브랜드 커뮤니케이션에서도 '친근한 톤'을 만드는 일이 결코 특별한 사람만의 영역이 아니라는 뜻이기도 하니까요.</p><p>마케터에게 유머와 위트는 단순한 개인기가 아닙니다. 딱딱한 메시지를 부드럽게 풀고, 소비자와의 거리를 좁히는 실질적인 도구가 되죠. '어떻게 말할 것인가'를 고민하는 분들이라면, 오늘 이 아티클을 가볍게 읽어보시는 것만으로도 작은 영감 하나쯤은 가져가실 수 있을 것 같습니다.</p><p>주말에도 이렇게 새로운 시각으로 배움을 이어가는 여러분이 정말 멋집니다. 오늘 하루도 가볍고 즐겁게 보내세요! ✨</p></div>
+        <div class="v2-header-meta">BRANDRISE DAILY v2 · WEEKLY ARCHIVE</div>
+        <div class="v2-header-title">이번 주 뉴스레터</div>
+        <div class="v2-arc-week">3월 23일 — 3월 27일</div>
     </div>
 
-    
-    <a class="v2-lb-card" href="https://www.longblack.co/note/1931" target="_blank" rel="noopener">
-        <div class="v2-lb-hero"><img src="images/2026-03-28/longblack.jpg" alt="" loading="lazy"></div>
-        <div class="v2-lb-content">
-        <div class="v2-lb-eyebrow">
-            <span class="v2-lb-icon">📖</span>
-            <span>롱블랙 · 오늘의 아티클</span>
+    <div class="v2-card">
+        <div class="v2-card-header">
+            <span class="v2-card-icon">📅</span>
+            <div>
+                <div class="v2-card-title">요일별 뉴스레터</div>
+                <div class="v2-card-source">클릭하면 해당 날짜 뉴스레터로 이동합니다</div>
+            </div>
         </div>
-        <div class="v2-lb-title">삶에게 웃으며 말 거는 법 : 유머는 재능이 아니라 근육이다</div>
-        <p class="v2-lb-subtitle">롱블랙 프렌즈 B 제게는 단점이 하나 있습니다. 바로 ‘유머 감각 제로’라는 것. 평생 이 사실을 받아들이면서 살아왔어요. 하지만 최근 책 『삶에게 웃으며 말 거는 법』의 한 구절을 읽고 생각이 많아졌죠.“우리는 불안과 절망이 문제가 될 만큼 높아지고 있는 시</p>
-        <span class="v2-lb-cta">아티클 읽기 →</span>
+        <div class="v2-arc-grid">
+        <div class="v2-arc-card v2-arc-card-empty">
+            <span class="v2-arc-day">월요일</span>
+            <span class="v2-arc-date">3월 23일</span>
+            <span class="v2-arc-cta v2-arc-cta-none">준비 중</span>
         </div>
-    </a>
+        <div class="v2-arc-card v2-arc-card-empty">
+            <span class="v2-arc-day">화요일</span>
+            <span class="v2-arc-date">3월 24일</span>
+            <span class="v2-arc-cta v2-arc-cta-none">준비 중</span>
+        </div>
+        <div class="v2-arc-card v2-arc-card-empty">
+            <span class="v2-arc-day">수요일</span>
+            <span class="v2-arc-date">3월 25일</span>
+            <span class="v2-arc-cta v2-arc-cta-none">준비 중</span>
+        </div>
+        <div class="v2-arc-card v2-arc-card-empty">
+            <span class="v2-arc-day">목요일</span>
+            <span class="v2-arc-date">3월 26일</span>
+            <span class="v2-arc-cta v2-arc-cta-none">준비 중</span>
+        </div>
+        <a class="v2-arc-card v2-arc-card-active" href="newsletters/2026-03-27.html">
+            <span class="v2-arc-day">금요일</span>
+            <span class="v2-arc-date">3월 27일</span>
+            <span class="v2-arc-lb">코메다 커피 : ‘느긋한 대접’으로 일본 3위가 된 카페 체인의 작은 원칙들</span>
+            <span class="v2-arc-cta">보기 →</span>
+        </a>
+        </div>
+    </div>
 
     <div class="v2-footer">
         <div class="v2-footer-nav">
-            <a href="newsletters/2026-03-28.html">🔗 오늘 링크 공유</a><a href="../grants/">📋 지원사업 공고</a><a href="../">v1 버전 보기</a>
+            <a href="../grants/">📋 지원사업 공고</a>
+            <a href="../">v1 버전 보기</a>
         </div>
         <div class="v2-footer-copy">Brandrise · 매일 자동 업데이트</div>
     </div>
