@@ -277,9 +277,7 @@ a { color: inherit; text-decoration: none; }
                margin-bottom: 5px;
                display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
                overflow: hidden; }
-.v2-yt-summary { font-size: 12px; color: #64748b; line-height: 1.6;
-                 display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
-                 overflow: hidden; }
+.v2-yt-summary { font-size: 12px; color: #64748b; line-height: 1.6; }
 
 /* 뉴스럴 — 가로형 레이아웃 */
 .v2-neu-section { display: flex; flex-direction: column; }
