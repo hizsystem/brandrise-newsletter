@@ -68,33 +68,24 @@ a { color: inherit; text-decoration: none; }
                margin-bottom: 5px;
                display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
                overflow: hidden; }
-.v2-yt-summary { font-size: 12px; color: #64748b; line-height: 1.6;
-                 display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
-                 overflow: hidden; }
+.v2-yt-summary { font-size: 12px; color: #64748b; line-height: 1.6; }
 
-/* 뉴스럴 카테고리 */
-.v2-cat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-@media (max-width: 560px) { .v2-cat-grid { grid-template-columns: 1fr; } }
-.v2-cat-card { border-radius: 14px; overflow: hidden; border: 1px solid #ebebeb;
-               background: white; box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-               transition: transform 0.15s, box-shadow 0.15s; display: block; }
-.v2-cat-card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.1); }
-.v2-cat-hero { height: 100px; position: relative; overflow: hidden; }
-.v2-cat-hero img { width: 100%; height: 100px; object-fit: cover; display: block; }
-.v2-cat-hero-grad { display: flex; align-items: center; justify-content: center; }
-.v2-cat-hero-emoji { font-size: 28px; }
-.v2-cat-hero-label { position: absolute; bottom: 0; left: 0; right: 0;
-    background: linear-gradient(transparent, rgba(0,0,0,0.72));
-    color: white; font-size: 11.5px; font-weight: 700; padding: 10px 10px 6px;
-    letter-spacing: 0.2px; }
-.v2-cat-body { padding: 12px 14px 14px; }
-.v2-headline-list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
-.v2-headline-item { font-size: 12px; color: #374151; line-height: 1.55;
-                    padding-left: 12px; position: relative; }
-.v2-headline-item::before { content: "›"; position: absolute; left: 0; color: #9ca3af;
-                            font-size: 14px; line-height: 1.3; }
-.v2-headline-item a { color: #374151; transition: color 0.15s; }
-.v2-headline-item a:hover { color: #6366f1; text-decoration: underline; }
+/* 뉴스럴 — 가로형 레이아웃 */
+.v2-neu-section { display: flex; flex-direction: column; }
+.v2-neu-row { display: flex; align-items: flex-start; gap: 18px;
+              padding: 14px 0; border-bottom: 1px solid #f3f4f6; }
+.v2-neu-row:first-child { padding-top: 4px; }
+.v2-neu-row:last-child { border-bottom: none; padding-bottom: 0; }
+.v2-neu-label { display: flex; flex-direction: column; align-items: center; gap: 5px;
+                width: 60px; flex-shrink: 0; padding-top: 2px; }
+.v2-neu-emoji { font-size: 26px; line-height: 1; }
+.v2-neu-cat { font-size: 10px; font-weight: 700; color: #6b7280;
+              text-align: center; line-height: 1.3; word-break: keep-all; }
+.v2-neu-list { list-style: none; flex: 1; display: flex; flex-direction: column; gap: 6px; }
+.v2-neu-item { font-size: 12.5px; color: #374151; line-height: 1.6;
+               padding-left: 13px; position: relative; }
+.v2-neu-item::before { content: "·"; position: absolute; left: 2px; color: #d1d5db;
+                       font-size: 16px; line-height: 1.3; font-weight: 700; }
 
 /* 헤이팝 — 이미지 카드 */
 .v2-heypop-list { display: flex; flex-direction: column; gap: 12px; }
@@ -208,6 +199,10 @@ a { color: inherit; text-decoration: none; }
             <a class="v2-source-link" href="./">← 최신 뉴스레터</a>
         </div>
         
+        <a class="v2-arc-full-item" href="newsletters/2026-03-30.html">
+            <span class="v2-arc-full-date">2026년 3월 30일 (월)</span>
+            <span class="v2-arc-full-arrow">→</span>
+        </a>
         <a class="v2-arc-full-item" href="newsletters/2026-03-28.html">
             <span class="v2-arc-full-date">2026년 3월 28일 (토)</span>
             <span class="v2-arc-full-arrow">→</span>
