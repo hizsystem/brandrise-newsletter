@@ -16,11 +16,13 @@ HEADERS = {
 }
 
 STYLE_SUFFIX = (
-    " Cute flat 2D illustration, Korean clipart style. "
-    "Bright cheerful colors on a soft white background. "
-    "2-3 simple rounded objects that clearly represent the topic. "
-    "Friendly, colorful, Korean mobile app illustration aesthetic — playful and clean. "
-    "Objects and icons only. No characters, no people, no faces, no text, no letters."
+    " Soft 3D flat illustration, Korean app/fintech style. "
+    "Very light mint-white gradient background. "
+    "Warm coral and pastel color palette — coral, peach, soft yellow, mint. "
+    "Main objects have slight depth and volume with smooth gradients. "
+    "Small colorful decorative spheres and dots floating around. "
+    "Clean, friendly, professional — like Korean e-commerce or fintech app UI illustration. "
+    "No characters, no people, no faces, no text, no letters."
 )
 
 
