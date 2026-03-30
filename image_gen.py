@@ -16,11 +16,11 @@ HEADERS = {
 }
 
 STYLE_SUFFIX = (
-    " Cute flat 2D cartoon illustration, Korean clipart style. "
-    "Bright cheerful colors on a soft white background. "
-    "2-3 simple rounded cartoon objects that clearly represent the topic. "
-    "Friendly, colorful, Korean mobile app sticker aesthetic — playful personality, clean composition. "
-    "No text, no letters, no people, no faces."
+    " Clean flat 2D illustration, modern editorial style. "
+    "Bright but sophisticated colors on a soft white or light background. "
+    "2-3 simple bold objects that clearly represent the topic — no characters, no faces, no people. "
+    "Geometric shapes, icons, and objects only. Minimal, sharp, professional. "
+    "Similar to Notion, Linear, or Figma product illustration style."
 )
 
 
@@ -44,12 +44,13 @@ def generate_prompts_batch(titles: list, anthropic_api_key: str) -> list:
                 "content": (
                     "다음 한국어 뉴스 제목 각각에 대해 DALL-E 3 이미지 생성용 영어 프롬프트를 만들어주세요.\n\n"
                     "스타일 규칙:\n"
-                    "- 뉴스 내용을 직관적으로 나타내는 귀여운 카툰 오브젝트 2-3개\n"
-                    "- 클립아트코리아 스타일: 밝고 친근한 색상, 둥근 모서리, 귀여운 한국 모바일 앱 스티커 느낌\n"
-                    "- 예: '유튜브 쇼핑 수익화' → 'a cute cartoon play button with a small shopping bag and coins'\n"
-                    "- 예: 'AI 기업 인수합병' → 'a friendly robot and a handshake icon with a small gear'\n"
-                    "- 예: '브랜드 SNS 마케팅 트렌드' → 'a cute megaphone with colorful heart and like icons floating around'\n"
-                    "- 예: '쿠팡 물류센터 확장' → 'a cartoon delivery box with wings and a location pin'\n"
+                    "- 뉴스 내용을 직관적으로 나타내는 심플한 오브젝트/아이콘 2-3개\n"
+                    "- 캐릭터·사람·얼굴 없이, 오브젝트와 아이콘만으로 구성\n"
+                    "- Notion/Linear 스타일: 깔끔하고 모던한 플랫 일러스트, 기하학적 형태\n"
+                    "- 예: '유튜브 쇼핑 수익화' → 'a play button icon, a shopping bag, and a bar chart'\n"
+                    "- 예: 'AI 기업 인수합병' → 'two circuit board shapes connected by a chain link icon'\n"
+                    "- 예: '브랜드 SNS 마케팅 트렌드' → 'a megaphone, social media bubble icons, and an upward arrow'\n"
+                    "- 예: '쿠팡 물류센터 확장' → 'a warehouse building icon, a delivery box, and a location pin'\n"
                     "- 25단어 이내 영어, 오브젝트 종류와 배치만 묘사\n"
                     "- 사람 없음, 텍스트 없음, 배경 별도 묘사 불필요\n\n"
                     f"제목들:\n{numbered}\n\n"
