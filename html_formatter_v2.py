@@ -544,6 +544,15 @@ def save_newsletter_v2(
     newsletter_path = newsletters_dir / f"{date_iso}.html"
     newsletter_path.write_text(_build(is_subpage=True), encoding="utf-8")
     (v2_dir / "index.html").write_text(_build(is_subpage=False), encoding="utf-8")
+    # 루트 index.html → 최신 날짜별 URL로 리다이렉트
+    redirect_url = f"v2/newsletters/{date_iso}.html"
+    (docs_dir / "index.html").write_text(
+        f'<!DOCTYPE html><html><head><meta charset="UTF-8">'
+        f'<meta http-equiv="refresh" content="0; url={redirect_url}">'
+        f'<script>location.href="{redirect_url}"</script>'
+        f'</head><body></body></html>',
+        encoding="utf-8",
+    )
 
     return newsletter_path
 
